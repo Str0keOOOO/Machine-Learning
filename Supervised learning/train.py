@@ -18,7 +18,6 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 data_features = get_all_features(data_values, f_s, 30, 3)
 
-
 """
 分割数据集
 """

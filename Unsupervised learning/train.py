@@ -36,15 +36,14 @@ kmeans_tested = KMeans(n_clusters=2, random_state=42)
 kmeans_tested.fit(data_tested_scaled)
 labels_tested = kmeans_tested.labels_
 
-
 """
 画图
 """
 
+fig, axes = plt.subplots(1, 3, figsize=(18, 6), sharex=True, sharey=True)
 
-plt.figure(figsize=(12, 6))
-plt.subplot(1, 2, 1)
-scatter = plt.scatter(
+# Subplot 1
+scatter = axes[0].scatter(
     data_trained_pca[:, 0],
     data_trained_pca[:, 1],
     c=labels,
@@ -52,7 +51,7 @@ scatter = plt.scatter(
     edgecolor="k",
     alpha=0.7,
 )
-scatter = plt.scatter(
+scatter = axes[0].scatter(
     data_tested_pca[:, 0],
     data_tested_pca[:, 1],
     c=labels_tested,
@@ -60,13 +59,29 @@ scatter = plt.scatter(
     edgecolor="k",
     alpha=0.7,
 )
-plt.title("K-means Clustering of PCA-transformed data_trained and data_tested")
-plt.xlabel("Principal Component 1")
-plt.ylabel("Principal Component 2")
-plt.legend(*scatter.legend_elements(), title="Clusters")
-plt.grid(True)
-plt.subplot(1, 2, 2)
-scatter = plt.scatter(
+axes[0].set_title("K-means Clustering of PCA-transformed data_trained and data_tested")
+axes[0].set_xlabel("Principal Component 1")
+axes[0].set_ylabel("Principal Component 2")
+axes[0].legend(*scatter.legend_elements(), title="Clusters")
+axes[0].grid()
+
+# Subplot 2
+scatter = axes[1].scatter(
+    data_trained_pca[:, 0],
+    data_trained_pca[:, 1],
+    c=labels,
+    cmap="viridis",
+    edgecolor="k",
+    alpha=0.7,
+)
+axes[1].set_title("K-means Clustering of PCA-transformed data_trained")
+axes[1].set_xlabel("Principal Component 1")
+axes[1].set_ylabel("Principal Component 2")
+axes[1].legend(*scatter.legend_elements(), title="Clusters")
+axes[1].grid()
+
+# Subplot 3
+scatter = axes[2].scatter(
     data_tested_pca[:, 0],
     data_tested_pca[:, 1],
     c=labels_tested,
@@ -74,11 +89,12 @@ scatter = plt.scatter(
     edgecolor="k",
     alpha=0.7,
 )
-plt.title("K-means Clustering of PCA-transformed data_trained")
-plt.xlabel("Principal Component 1")
-plt.ylabel("Principal Component 2")
-plt.legend(*scatter.legend_elements(), title="Clusters")
-plt.grid()
+axes[2].set_title("K-means Clustering of PCA-transformed data_tested")
+axes[2].set_xlabel("Principal Component 1")
+axes[2].set_ylabel("Principal Component 2")
+axes[2].legend(*scatter.legend_elements(), title="Clusters")
+axes[2].grid()
+
 plt.show()
 
 
