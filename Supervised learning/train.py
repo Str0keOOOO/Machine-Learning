@@ -10,7 +10,7 @@ from sklearn.naive_bayes import MultinomialNB, BernoulliNB, GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.ensemble import RandomForestClassifier
-from sklearn import svm
+from sklearn.svm import SVC
 from xgboost.sklearn import XGBClassifier
 from lightgbm.sklearn import LGBMClassifier
 from sklearn.neural_network import MLPClassifier
@@ -75,7 +75,7 @@ RFC.fit(x_train, y_train)
 print(f"随机森林训练集得分:{RFC.score(x_train,y_train)}")
 print(f"随机森林测试集得分:{RFC.score(x_test,y_test)}")
 
-SM = svm.SVC(kernel="rbf")
+SM = SVC(kernel="rbf")
 SM.fit(x_train, y_train)
 print(f"支持向量机训练集得分:{SM.score(x_train,y_train)}")
 print(f"支持向量机测试集得分:{SM.score(x_test,y_test)}")
